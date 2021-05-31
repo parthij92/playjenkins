@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    registry = "192.168.0.121:5000/justme/myweb:4"
+    registry = "192.168.0.121:5000/justme/myweb"
     dockerImage = ""
   }
 
@@ -18,7 +18,7 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-          dockerImage = docker.build registry
+          dockerImage = docker.build registry + ":4"
         }
       }
     }
