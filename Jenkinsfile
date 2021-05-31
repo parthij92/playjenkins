@@ -10,10 +10,10 @@ pipeline {
       }
     }
     
-    stage('Apply Kubernetes files') {
-      steps{
-        withKubeConfig([credentialsId: 'mykubeconfig']) {
-          sh 'kubectl apply -f myweb.yaml'
+    stage('Deploy App') {
+      steps {
+        script {
+          kubernetesDeploy(configs: 'nginx_1.yaml', kubeconfigId: 'kd_myconfig')
         }
       }
     }
