@@ -11,8 +11,10 @@ pipeline {
     }
     
     stage('Apply Kubernetes files') {
-      withKubeConfig([credentialsId: 'mykubeconfig']) {
-        sh 'kubectl apply -f myweb.yaml'
+      steps{
+        withKubeConfig([credentialsId: 'mykubeconfig']) {
+          sh 'kubectl apply -f myweb.yaml'
+        }
       }
     }
     
