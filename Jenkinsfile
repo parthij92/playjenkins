@@ -9,15 +9,13 @@ pipeline {
         git url:'https://github.com/parthij92/playjenkins.git', branch:'test-deploy-stage'
       }
     }
-
-    stage('Deploy App') {
-      steps {
-        script {
-          kubernetesDeploy(configs: 'nginx_1.yaml', kubeconfigId: 'kd_myconfig')
-        }
+    
+    stage('Apply Kubernetes files') {
+      withKubeConfig([credentialsId: 'mykubeconfig') {
+        sh 'kubectl apply -f myweb.yaml'
       }
     }
-
+    
   }
 
 }
