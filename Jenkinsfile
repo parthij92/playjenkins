@@ -26,7 +26,7 @@ pipeline {
     stage('replace content') {
       steps{
         script {
-          contentReplace(configs: [fileContentReplaceConfig(configs: [fileContentReplaceItemConfig(matchCount: 1, replace: '/myweb:$BUILD_NUMBER', search: '/myweb:\\d+')], fileEncoding: 'UTF-8', filePath: 'index.html')])
+          contentReplace(configs: [fileContentReplaceConfig(configs: [fileContentReplaceItemConfig(matchCount: 0, replace: '/myweb:$BUILD_NUMBER', search: '/myweb:\\d+')], fileEncoding: 'UTF-8', filePath: 'myweb.yaml')])
         }
       }
     }
